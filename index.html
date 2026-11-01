@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CampusSetu — Smart Campus Problem Solver. Ethical, transparent, and collaborative issue reporting for college campuses.">
+  <title>CampusSetu — Smart Campus Problem Solver</title>
+
+  <!-- Google Fonts: Poppins (Headings) + Open Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP JUDGE & DEMONSTRATION NOTICE BAR
+       ======================================================================== -->
+  <div class="judge-banner" role="complementary" aria-label="Hackathon Demo Notice">
+    <div class="judge-banner-content">
+      <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+        <span class="judge-badge">🏆 Hackathon Demo Mode</span>
+        <p>
+          All records, analytics, and status updates shown are <strong>DEMO DATA</strong> for local prototype evaluation.
+        </p>
+      </div>
+      <div class="judge-banner-actions">
+        <button type="button" class="btn-judge-action" id="btn-reset-demo" title="Reset dataset back to benchmark records">
+          🔄 Reset Demo Data
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PRIMARY HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Brand Logo & Name -->
+      <a href="#home" class="brand-link" data-nav-target="home" aria-label="CampusSetu Home">
+        <div class="brand-logo-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true">
+            <defs>
+              <linearGradient id="headerPinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F766E"/>
+                <stop offset="100%" stop-color="#14B8A6"/>
+              </linearGradient>
+            </defs>
+            <path d="M50 8 C31.2 8 16 23.2 16 42 C16 63 44 88 47.8 91.2 C49.1 92.3 50.9 92.3 52.2 91.2 C56 88 84 63 84 42 C84 23.2 68.8 8 50 8 Z" fill="#1E3E62" />
+            <circle cx="50" cy="40" r="23" fill="url(#headerPinGrad)"/>
+            <path d="M40 40 L47 47 L61 32" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">Campus<span class="setu-highlight">Care</span> <span style="font-size: 0.85rem; font-weight: 500; color: var(--teal-200);">(CampusSetu)</span></span>
+          <span class="brand-subtitle">Smart Campus Problem Solver</span>
+        </div>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li>
+            <a href="#home" class="nav-link active" data-target="home" data-nav-target="home">
+              <span>🏠</span> Home
+            </a>
+          </li>
+          <li>
+            <a href="#hub" class="nav-link" data-target="hub" data-nav-target="hub">
+              <span>📋</span> Smart Issue Hub
+            </a>
+          </li>
+          <li>
+            <a href="#insights" class="nav-link" data-target="insights" data-nav-target="insights">
+              <span>📊</span> Community Insights
+            </a>
+          </li>
+          <li>
+            <a href="#report" class="nav-link cta-report" data-target="report" data-nav-target="report">
+              <span>✍️</span> Report Issue
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       PAGE 1: HOME PAGE
+       ======================================================================== -->
+  <main class="page-view active" id="view-home">
+    <!-- Hero Banner -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text-col">
+          <div class="hero-eyebrow">
+            <span>🛡️</span> Smart AI Guard & Peer Verification
+          </div>
+          <h1 class="hero-title">
+            The bridge between <span>campus voices</span> and real solutions.
+          </h1>
+          <p class="hero-desc">
+            CampusSetu empowers students to report infrastructure, Wi-Fi, lab, and sanitation challenges with automated duplicate detection, privacy scrubbing, and transparent peer verification.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#report" class="btn btn-lg btn-primary" data-nav-target="report">
+              ✍️ Report an Issue Now
+            </a>
+            <a href="#hub" class="btn btn-lg btn-outline" data-nav-target="hub" style="color: var(--white); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25);">
+              🔍 Browse Issue Hub
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Hero Showcase Card -->
+        <div class="hero-card-preview">
+          <div class="preview-card-header">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.05em;">
+                ⚡ Live Campus Feed
+              </span>
+              <span class="demo-tag demo-tag-dark" style="margin-left: 0.4rem;">DEMO DATA</span>
+            </div>
+            <span class="preview-pill">Local Prototype</span>
+          </div>
+
+          <div id="hero-recent-issues">
+            <!-- Dynamically populated top 3 issues -->
+          </div>
+
+          <div style="text-align: center; margin-top: 1rem;">
+            <a href="#hub" data-nav-target="hub" style="font-size: 0.84rem; color: var(--teal-400); font-weight: 600;">
+              View all active campus reports in Hub →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campus Vitals KPI Counter Bar -->
+    <section class="vitals-bar" aria-label="Campus Problem Statistics">
+      <div class="container">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+          <h2 style="font-size: 1.15rem; color: var(--navy-900);">Campus Problem Triage Vitals</h2>
+          <span class="demo-tag">DEMO SAMPLE METRICS</span>
+        </div>
+        <div class="vitals-grid">
+          <div class="vital-card">
+            <div class="vital-number" id="vital-total">8</div>
+            <div class="vital-label">Total Logged</div>
+            <div class="vital-caption">Local prototype benchmark</div>
+          </div>
+          <div class="vital-card">
+            <div class="vital-number" style="color: var(--teal-600);" id="vital-submitted">4</div>
+            <div class="vital-label">Submitted</div>
+            <div class="vital-caption">Queued in local triage</div>
+          </div>
+          <div class="vital-card">
+            <div class="vital-number" style="color: #6366f1;" id="vital-wip">2</div>
+            <div class="vital-label">In Progress</div>
+            <div class="vital-caption">Simulated remediation stage</div>
+          </div>
+          <div class="vital-card">
+            <div class="vital-number" style="color: var(--emerald-600);" id="vital-resolved">1</div>
+            <div class="vital-label">Resolved</div>
+            <div class="vital-caption">Verified demo closure</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features / Key Pillars -->
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Why CampusSetu?</span>
+          <h2 class="section-title">Built to Solve College Infrastructure Friction</h2>
+          <p class="section-subtitle">
+            Most college complaint forms end up in a black hole with duplicate tickets, leaked contact numbers, and zero transparency. CampusSetu changes that.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrap">🤖</div>
+            <h3 class="feature-title">Smart Duplicate Detection</h3>
+            <p class="feature-text">
+              Real-time heuristic detects if another student already reported the same Wi-Fi glitch, broken water cooler, or lab issue. Students can simply upvote rather than cluttering administrative queues.
+            </p>
+            <span class="feature-chip">Duplicate Prevention</span>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrap">🛡️</div>
+            <h3 class="feature-title">Automated Privacy Guard</h3>
+            <p class="feature-text">
+              CampusSetu automatically scans and redacts personal telephone numbers, student roll numbers, and inappropriate personal accusations before public listing to prevent privacy leakage and harassment.
+            </p>
+            <span class="feature-chip">Zero Sensitive Data Exposure</span>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrap">⚖️</div>
+            <h3 class="feature-title">Ethical & Transparent Status</h3>
+            <p class="feature-text">
+              We never make misleading claims that an issue has reached authorities or been resolved unless verified. Every status change carries a verification log and audit note.
+            </p>
+            <span class="feature-chip">Honest Verification</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How CampusSetu Works Steps -->
+    <section class="workflow-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">How It Works</span>
+          <h2 class="section-title">A 3-Step Collaborative Resolution Cycle</h2>
+          <p class="section-subtitle">
+            Streamlined for students and transparent for campus representatives.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Report & Auto-Sanitize</h3>
+            <p class="step-desc">
+              Choose your campus location and describe the problem. Our real-time engine flags duplicates and redacts private contact details instantly.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Peer Verification & Upvoting</h3>
+            <p class="step-desc">
+              Students facing the exact same outage or damage tap "Facing this" to build community weight and weed out non-issues.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Audit Log & Resolution</h3>
+            <p class="step-desc">
+              Track transparent progress updates. Verified demo entries show realistic milestones without false administrative claims.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner-section">
+      <div class="container">
+        <div class="cta-banner-card">
+          <h2>Ready to test CampusSetu?</h2>
+          <p>
+            Try reporting a simulated issue, testing the live duplicate detector, or exploring our Community Insights analytics.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#report" class="btn btn-lg btn-primary" data-nav-target="report">
+              File a Demo Issue →
+            </a>
+            <a href="#insights" class="btn btn-lg btn-outline" data-nav-target="insights" style="color: var(--white); background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25);">
+              Explore Analytics Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE 2: REPORT ISSUE FORM
+       ======================================================================== -->
+  <main class="page-view" id="view-report">
+    <div class="container page-container">
+      <div class="section-header text-left">
+        <span class="section-tag">New Submission</span>
+        <h2 class="section-title">Report a Campus Problem</h2>
+        <p class="section-subtitle">
+          Submit details about an infrastructure, Wi-Fi, lab, or hostel defect. All inputs are run through our real-time duplicate checker and privacy guard.
+        </p>
+      </div>
+
+      <div class="report-form-layout">
+        <!-- Main Form Card -->
+        <div class="form-card">
+          <!-- Judge Quick Pre-Fill Helper -->
+          <div style="background: var(--navy-50); border: 1px solid var(--navy-100); border-radius: var(--radius-md); padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="font-size: 0.82rem; color: var(--navy-900);">
+              💡 <strong>Judge Showcase Shortcuts:</strong> Test automated features with one click:
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button type="button" class="btn btn-sm btn-outline-teal" id="btn-demo-prefill-dup">
+                Test Duplicate Detection
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-teal" id="btn-demo-prefill-priv">
+                Test Privacy Guard
+              </button>
+            </div>
+          </div>
+
+          <form id="issue-report-form" novalidate>
+            <!-- 1. Category Tiles Grid -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>1. Select Issue Category <span class="required">*</span></span>
+                <span class="form-hint" style="margin: 0;">Click one tile</span>
+              </label>
+              <div class="category-tiles-grid" id="cat-tiles-grid">
+                <!-- Dynamically populated from JS -->
+              </div>
+            </div>
+
+            <!-- 2. Campus Location Selection -->
+            <div class="form-group">
+              <label for="report-location" class="form-label">
+                <span>2. Campus Building / Zone <span class="required">*</span></span>
+              </label>
+              <select id="report-location" class="form-select" required>
+                <!-- Populated dynamically from CAMPUS_LOCATIONS -->
+              </select>
+              <div class="form-hint">Choose the primary campus structure where the issue is present.</div>
+            </div>
+
+            <!-- 2b. Specific Spot / Room (Optional) -->
+            <div class="form-group">
+              <label for="report-specific-spot" class="form-label">
+                <span>Specific Room / Landmark (Optional)</span>
+              </label>
+              <input type="text" id="report-specific-spot" class="form-input" placeholder="e.g., Room 304, Near water dispenser, East staircase">
+            </div>
+
+            <!-- 3. Issue Title -->
+            <div class="form-group">
+              <label for="report-title" class="form-label">
+                <span>3. Issue Title <span class="required">*</span></span>
+              </label>
+              <input type="text" id="report-title" class="form-input" placeholder="e.g., Wi-Fi router in Block C 2nd floor disconnecting" required>
+              <div class="form-hint">Be concise and specific. Our algorithm compares this against active tickets.</div>
+            </div>
+
+            <!-- LIVE DUPLICATE WARNING ALERT -->
+            <div class="live-feedback-card duplicate-alert-card" id="live-duplicate-alert" role="alert" aria-live="polite"></div>
+
+            <!-- 4. Problem Description -->
+            <div class="form-group">
+              <label for="report-desc" class="form-label">
+                <span>4. Detailed Description <span class="required">*</span></span>
+              </label>
+              <textarea id="report-desc" class="form-textarea" placeholder="Explain the symptoms, how long it has been occurring, and how it impacts students..." required></textarea>
+              <div class="form-hint">Minimum 15 characters. Please avoid writing private mobile numbers or roll IDs.</div>
+            </div>
+
+            <!-- LIVE PRIVACY GUARD FEEDBACK ALERT -->
+            <div class="live-feedback-card privacy-alert-card" id="live-privacy-alert" role="alert" aria-live="polite"></div>
+
+            <!-- 5. Urgency Level -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>5. Urgency Level <span class="required">*</span></span>
+              </label>
+              <div class="urgency-radio-group">
+                <label class="urgency-radio-label selected-low">
+                  <input type="radio" name="urgency" value="low" checked>
+                  <span>🟢 Normal / Low</span>
+                </label>
+                <label class="urgency-radio-label">
+                  <input type="radio" name="urgency" value="medium">
+                  <span>🟡 Moderate</span>
+                </label>
+                <label class="urgency-radio-label">
+                  <input type="radio" name="urgency" value="high">
+                  <span>🔴 High / Hazard</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 6. Student Handle (Anonymous / Safe) -->
+            <div class="form-group">
+              <label for="report-author" class="form-label">
+                <span>Reported By (Public Display Name)</span>
+              </label>
+              <input type="text" id="report-author" class="form-input" placeholder="e.g., Anonymous Student, Mechanical 3rd Yr (No sensitive details)">
+              <div class="form-hint">CampusSetu never asks for passwords, phone numbers, or personal accounts.</div>
+            </div>
+
+            <!-- 7. Simulated Photo / Attachment -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Optional Photo Evidence</span>
+                <span class="demo-tag">SIMULATED UPLOAD</span>
+              </label>
+              <div class="dropzone-box" onclick="document.getElementById('simulated-file').click();">
+                <div class="dropzone-content">
+                  <span class="dropzone-icon">📷</span>
+                  <span class="dropzone-text">Click or drag photo here to attach</span>
+                  <span class="dropzone-subtext">JPG, PNG up to 5MB (Simulated client preview)</span>
+                </div>
+                <input type="file" id="simulated-file" style="display: none;" accept="image/*" onchange="const f = this.files[0]; if (f) { const p = document.getElementById('file-preview-strip'); p.style.display = 'flex'; document.getElementById('preview-filename').textContent = f.name; }">
+              </div>
+              <div class="file-preview-strip" id="file-preview-strip">
+                <span id="preview-filename">image.jpg</span>
+                <span style="font-size: 0.75rem; color: var(--teal-700);">✓ Attached</span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="margin-top: 2rem;">
+              <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;">
+                🚀 Submit Report to Local Triage Queue
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Side Guidelines & Integrity Card -->
+        <div class="form-sidebar">
+          <div class="guideline-card">
+            <h3><span>🛡️</span> Zero Data Exposure</h3>
+            <ul class="guideline-list">
+              <li>
+                <span class="bullet">✓</span>
+                <span><strong>No sensitive accounts:</strong> CampusSetu operates without asking for personal passwords or private student records.</span>
+              </li>
+              <li>
+                <span class="bullet">✓</span>
+                <span><strong>Automated phone scrubber:</strong> 10-digit mobile numbers are automatically masked (`[PHONE REDACTED]`).</span>
+              </li>
+              <li>
+                <span class="bullet">✓</span>
+                <span><strong>Civility protection:</strong> Inappropriate personal attacks are flagged for moderator review.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="guideline-card">
+            <h3><span>⚖️</span> Ethical Triage Policy</h3>
+            <p style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.55;">
+              In accordance with our hackathon engineering ethics, CampusSetu:
+            </p>
+            <ul class="guideline-list">
+              <li>
+                <span class="bullet">•</span>
+                <span>Never claims an issue has reached college management until physically confirmed.</span>
+              </li>
+              <li>
+                <span class="bullet">•</span>
+                <span>Tags all simulated records with prominent <strong>DEMO DATA</strong> labels.</span>
+              </li>
+              <li>
+                <span class="bullet">•</span>
+                <span>Requires peer upvoting to verify community validity before simulated escalation.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       PAGE 3: SMART ISSUE HUB
+       ======================================================================== -->
+  <main class="page-view" id="view-hub">
+    <div class="container page-container">
+      <div class="section-header text-left">
+        <span class="section-tag">Issue Repository</span>
+        <h2 class="section-title">Smart Issue Hub</h2>
+        <p class="section-subtitle">
+          Search, filter, and track verified campus problems. Upvote issues you are experiencing to reinforce community priority.
+        </p>
+      </div>
+
+      <!-- Controls & Filter Card -->
+      <div class="hub-controls-card">
+        <!-- Search Bar -->
+        <div class="hub-search-row">
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="hub-search-input" 
+              class="search-input" 
+              placeholder="Search by keywords (e.g. Wi-Fi, water cooler, Block C, streetlight)..."
+              aria-label="Search campus issues"
+            >
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn-csv-export" id="btn-export-csv" title="Export current reports to CSV (DEMO DATA)">
+              📥 Export CSV
+            </button>
+            <button type="button" class="btn btn-outline" onclick="window.CampusSetu.resetHubFilters()">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="filter-pills-row" id="hub-category-pills" role="toolbar" aria-label="Category Filters">
+          <!-- Populated from JS -->
+        </div>
+
+        <!-- Sub Filters: Status, Flags & Sort -->
+        <div class="filter-sub-row">
+          <div class="toggle-group">
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <span class="filter-label-inline">Status:</span>
+              <select id="hub-status-filter" class="form-select" style="padding: 0.35rem 0.75rem; font-size: 0.84rem; width: auto;">
+                <option value="all">All Statuses</option>
+                <option value="Submitted">Submitted</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Flagged for Review">Flagged for Review</option>
+              </select>
+            </div>
+
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="filter-duplicates-only">
+              <span>Show Duplicates Only ⚠️</span>
+            </label>
+
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="filter-privacy-only">
+              <span>Flagged for Review 🛡️</span>
+            </label>
+          </div>
+
+          <div class="sort-group">
+            <span class="filter-label-inline">Sort By:</span>
+            <select id="hub-sort-select" class="sort-select" aria-label="Sort issues">
+              <option value="upvotes">Most Upvoted (High Impact)</option>
+              <option value="newest">Newest Submissions</option>
+              <option value="urgency">Urgency / Hazard Level</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Meta Count -->
+      <div class="results-meta-bar">
+        <div id="hub-results-count">
+          Showing <strong>8</strong> campus reports <span class="demo-tag">DEMO DATA</span>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--slate-400);">
+          Click <strong>Details & Verification</strong> to view audit trail
+        </div>
+      </div>
+
+      <!-- Issue Cards Grid -->
+      <div class="issues-grid" id="hub-issues-list">
+        <!-- Rendered dynamically by applyHubFilters() -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       PAGE 4: COMMUNITY INSIGHTS & ANALYTICS
+       ======================================================================== -->
+  <main class="page-view" id="view-insights">
+    <div class="container page-container">
+      <div class="section-header text-left">
+        <span class="section-tag">Campus Analytics</span>
+        <h2 class="section-title">Community Insights Dashboard</h2>
+        <p class="section-subtitle">
+          Real-time aggregated breakdown of campus problem categories, resolution stages, hotspot zones, and duplicate prevention impact.
+        </p>
+      </div>
+
+      <!-- Hackathon Notice Banner -->
+      <div style="background: var(--navy-50); border: 1px solid var(--navy-100); border-radius: var(--radius-md); padding: 0.85rem 1.15rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.15rem;">📊</span>
+          <span style="font-size: 0.85rem; color: var(--navy-900);">
+            <strong>Local Demonstration Dataset:</strong> All metrics are calculated live from prototype submissions.
+          </span>
+        </div>
+        <span class="demo-tag demo-tag-dark">DEMO DATA</span>
+      </div>
+
+      <!-- Analytics KPI Row -->
+      <div class="vitals-grid" style="margin-bottom: 2rem;">
+        <div class="vital-card">
+          <div class="vital-number" id="insight-kpi-submitted" style="color: var(--teal-600);">4</div>
+          <div class="vital-label">Submitted Reports</div>
+          <div class="vital-caption">Currently queued in local triage</div>
+        </div>
+        <div class="vital-card">
+          <div class="vital-number" id="insight-kpi-wip" style="color: #8b5cf6;">2</div>
+          <div class="vital-label">In Progress</div>
+          <div class="vital-caption">Simulated active handling</div>
+        </div>
+        <div class="vital-card">
+          <div class="vital-number" id="insight-kpi-resolved" style="color: #10b981;">1</div>
+          <div class="vital-label">Resolved</div>
+          <div class="vital-caption">Verified demo closure</div>
+        </div>
+        <div class="vital-card">
+          <div class="vital-number" id="kpi-privacy-redacted" style="color: #be185d;">1</div>
+          <div class="vital-label">Flagged for Review</div>
+          <div class="vital-caption">Sensitive data / review held</div>
+        </div>
+      </div>
+
+      <!-- Analytics Main Grid -->
+      <div class="insights-grid">
+        <!-- 1. Category-Wise Distribution -->
+        <div class="insight-card">
+          <div class="insight-card-header">
+            <h3 class="insight-card-title">
+              <span>📂</span> Category-Wise Breakdown
+            </h3>
+            <span class="demo-tag">LIVE PROTOTYPE</span>
+          </div>
+          <div class="category-bars-list" id="category-summary-bars">
+            <!-- Rendered from JS -->
+          </div>
+        </div>
+
+        <!-- 2. Status Distribution Donut Chart -->
+        <div class="insight-card">
+          <div class="insight-card-header">
+            <h3 class="insight-card-title">
+              <span>🎯</span> Problem Triage Status
+            </h3>
+            <span class="demo-tag">DEMO METRICS</span>
+          </div>
+          <div class="donut-chart-container">
+            <div class="donut-svg-wrap" id="donut-svg">
+              <!-- Rendered dynamically -->
+            </div>
+            <div class="donut-legend" id="donut-legend">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Campus Hotspots Heatlist -->
+        <div class="insight-card">
+          <div class="insight-card-header">
+            <h3 class="insight-card-title">
+              <span>📍</span> Campus Hotspot Zones
+            </h3>
+            <span class="demo-tag">ZONE DENSITY</span>
+          </div>
+          <p style="font-size: 0.84rem; color: var(--slate-500); margin-bottom: 1rem;">
+            Identifies zones with recurring infrastructure reports to direct student volunteer inspection:
+          </p>
+          <div class="campus-zones-grid" id="campus-hotspots-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- 4. Solution Impact & Ethics Audit -->
+        <div class="insight-card">
+          <div class="insight-card-header">
+            <h3 class="insight-card-title">
+              <span>⚖️</span> Integrity & Ethical Framework
+            </h3>
+            <span class="demo-tag">SAFETY AUDIT</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.86rem; color: var(--slate-600);">
+            <div style="background: #fff7ed; border: 1px solid #fed7aa; padding: 0.85rem; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <strong style="color: #9a3412;">Duplicate Tickets Prevented:</strong><br>
+                <span>Same area & category reports linked together</span>
+              </div>
+              <div id="kpi-dupes-prevented" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: #c2410c;">1</div>
+            </div>
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); padding: 0.85rem; border-radius: var(--radius-md);">
+              <strong style="color: var(--navy-900);">Zero False Management Escalations:</strong><br>
+              CampusSetu / CampusCare strictly prohibits claiming problems are "Delivered to Management" or "Resolved" unless genuinely verified.
+            </div>
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); padding: 0.85rem; border-radius: var(--radius-md);">
+              <strong style="color: var(--navy-900);">Privacy & Moderation by Design:</strong><br>
+              Personal mobile numbers and inappropriate accusations are automatically flagged for human review.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       GLOBAL ISSUE DETAILS & CONFIRMATION MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="issue-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Issue Details</h3>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">×</button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer" id="modal-footer-actions">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ======================================================================== -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true">
+              <path d="M50 8 C31.2 8 16 23.2 16 42 C16 63 44 88 47.8 91.2 C49.1 92.3 50.9 92.3 52.2 91.2 C56 88 84 63 84 42 C84 23.2 68.8 8 50 8 Z" fill="#1E3E62" />
+              <circle cx="50" cy="40" r="23" fill="#0D9488"/>
+              <path d="M40 40 L47 47 L61 32" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--white);">
+              Campus<span style="color: var(--teal-400);">Setu</span>
+            </span>
+          </div>
+          <p>
+            Smart Campus Problem Solver — bridging student voices with verified, transparent solutions through AI duplicate checking, privacy scrubbing, and community triage.
+          </p>
+          <div style="margin-top: 0.75rem;">
+            <span class="demo-tag demo-tag-dark">HACKATHON LOCAL PROTOTYPE</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-nav-target="home">Home & Campus Vitals</a></li>
+            <li><a href="#report" data-nav-target="report">Report an Issue</a></li>
+            <li><a href="#hub" data-nav-target="hub">Smart Issue Hub</a></li>
+            <li><a href="#insights" data-nav-target="insights">Community Insights & Analytics</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Integrity & Ethics Notice</h4>
+          <p style="font-size: 0.82rem; color: var(--slate-400);">
+            CampusSetu is a prototype built for hackathon demonstration. Reports are kept on local storage and are never falsely claimed to be resolved or delivered to college authorities without physical verification.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 CampusSetu — Smart Campus Problem Solver. Developed for College Hackathon.
+        </div>
+        <div>
+          Built with HTML5, CSS3, JavaScript (No external paid dependencies)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/demo-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
